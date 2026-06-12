@@ -1,0 +1,15 @@
+TRUNCATE TABLE posts RESTART IDENTITY CASCADE;
+TRUNCATE TABLE authors RESTART IDENTITY CASCADE;
+
+
+INSERT INTO authors (name, email, bio) VALUES
+('Jonathan Heredia', 'jonahere@gmail.com', 'Desarrollador full-stack apasionado por Node.js'),
+('Natalia Rubio', 'natisrub@gmail.com', 'Escritora técnica especializada en bases de datos'),
+('Alejo Fernandez', 'alejofer@example.com', 'Ingeniera de software con foco en APIs REST');
+
+INSERT INTO posts (title, content, author_id, published) VALUES
+('Introducción a Node.js', 'Node.js es un runtime de JavaScript...', 1, true),
+('PostgreSQL vs MySQL', 'Ambas bases de datos tienen ventajas...', 2, true),
+('APIs RESTful', 'REST es un estilo arquitectónico...', 1, true),
+('Manejo de errores en Express', 'El manejo apropiado de errores...', 3, false),
+('Async/Await explicado', 'Las promesas simplifican el código asíncrono...', 1, false);
