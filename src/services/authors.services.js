@@ -1,47 +1,39 @@
-let authors = [ 
-    {
-        id: 1,
-        name: 'Jonathan Heredia',
-        email: 'jonahere@gmail.com',
-        bio: 'Desarrollador full-stack apasionado por node.js'
-    },
-    {
-        id: 2,
-        name: 'Natalia Rubio',
-        email: 'natisrub@gmail.com',
-        bio: 'Ecritora tecnica epecializada en base de datos'
-    },
-    {
-        id: 3,
-        name: 'Alejo Fernandez',
-        email: 'alejofer@example.com',
-        bio: 'Ingeniero de software con foco en APIs REST'
-    }
-];    
+const pool = require('../db/pool');
 
-const getAll = () => authors;
-
-const getById = (id) => authors.find(a => a.id === parseInt(id));
-
-const create = (data) => {
-    const newAuthor = { id: authors.length + 1, ...data };
-    authors.push(newAuthor);
-    return newAuthor;
+const getAll = async () => {
+    const result = await pool.query('SELECT * FROM authors ORDER BY id');
+    return result.rows;
 };
 
-const update = (id, data) => {
-    const index = authors.findIndex(a => a.id === parseInt(id));
-    if (index === -1) return null;
-    authors[index] = { ...authors[index], ...data };
-    return authors[index];
+const getById = async (id) => {
+    const result = await pool.query('SELECT * FROM authors WHERE id = $1', [id]);
+    return result.rows[0];
 };
 
-const remove = (id) => {
-    const index = authors.findIndex(a => a.id === parseInt(id));
-    if (index === -1) return null;
-    const deleted = authors[index];
-    authors.splice(index, 1);
-    return deleted;
+const create = async (data) => {
+    const { name, email, bio } = data;
+    const result = await pool.query(
+    'INSERT INTO authors (name, email, bio) VALUES ($1, $2, $3) RETURNING *',
+    [name, email, bio]
+    );
+    return result.rows[0];
+};
+
+const update = async (id, data) => {
+    const { name, email, bio } = data;
+    const result = await pool.query(
+    'UPDATE authors SET name = $1, email = $2, bio = $3 WHERE id = $4 RETURNING *',
+    [name, email, bio, id]
+    );
+    return result.rows[0];
+};
+
+const remove = async (id) => {
+    const result = await pool.query(
+    'DELETE FROM authors WHERE id = $1 RETURNING *',
+    [id]
+    );
+    return result.rows[0];
 };
 
 module.exports = { getAll, getById, create, update, remove };
