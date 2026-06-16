@@ -10,10 +10,10 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../docs/openapi.yaml'));
 app.use(cors());
 app.use(express.json());
 
-// Swagger con URL dinámica según el entorno
+
 app.use('/api-docs', swaggerUi.serve, (req, res, next) => {
     const host = req.get('host');
-    const protocol = req.protocol;
+    const protocol = host.includes('railway.app') ? 'https' : req.protocol;
     const dynamicDoc = {
     ...swaggerDocument,
     servers: [
@@ -22,8 +22,8 @@ app.use('/api-docs', swaggerUi.serve, (req, res, next) => {
         description: 'Servidor actual'
     }
     ]
-    };
-    swaggerUi.setup(dynamicDoc)(req, res, next);
+};
+swaggerUi.setup(dynamicDoc)(req, res, next);
 });
 
 const authorsRouter = require('./routes/authors.routes');
