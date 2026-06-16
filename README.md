@@ -50,6 +50,8 @@ El servidor estará disponible en `http://localhost:3000`
 
 ## Documentación OpenAPI
 
+![Swagger UI](img/swagger.png)
+
 Con el servidor corriendo, abre en el navegador:
 
 `http://localhost:3000/api-docs`
@@ -58,10 +60,36 @@ O en producción:
 
 `https://proyecto-henry-modulo-2-jonathan-heredia-production.up.railway.app/api-docs`
 
+## API en producción
+
+![API Authors](img/authors.png)
+
 ## Ejecutar tests
+
+![Tests](img/tests.png)
 
 ```bash
 npm test
+```
+
+## Deploy en Railway
+
+![Railway Dashboard](img/railway.png)
+
+1. Crear cuenta en [Railway](https://railway.app)
+2. Crear nuevo proyecto → Deploy from GitHub
+3. Conectar este repositorio
+4. Agregar servicio PostgreSQL en Railway
+5. Configurar variables de entorno:
+   - `DB_HOST` → Internal host de PostgreSQL en Railway
+   - `DB_PORT` → 5432
+   - `DB_NAME` → railway
+   - `DB_USER` → postgres
+   - `DB_PASSWORD` → contraseña de Railway
+6. Ejecutar los scripts SQL:
+```bash
+psql -h HOST_PUBLICO -U postgres -p PUERTO -d railway -f sql/setup.sql
+psql -h HOST_PUBLICO -U postgres -p PUERTO -d railway -f sql/seed.sql
 ```
 
 ## Endpoints disponibles
@@ -96,25 +124,14 @@ DB_PASSWORD=tu_contraseña
 PORT=3000
 ```
 
-## Deploy en Railway
-
-1. Crear cuenta en [Railway](https://railway.app)
-2. Crear nuevo proyecto → Deploy from GitHub
-3. Conectar este repositorio
-4. Agregar servicio PostgreSQL en Railway
-5. Configurar variables de entorno:
-   - `DB_HOST` → Internal host de PostgreSQL en Railway
-   - `DB_PORT` → 5432
-   - `DB_NAME` → railway
-   - `DB_USER` → postgres
-   - `DB_PASSWORD` → contraseña de Railway
-6. Ejecutar los scripts SQL:
-```bash
-psql -h HOST_PUBLICO -U postgres -p PUERTO -d railway -f sql/setup.sql
-psql -h HOST_PUBLICO -U postgres -p PUERTO -d railway -f sql/seed.sql
-```
-
 ## Uso de IA
+
+![Uso de IA](img/IA01.png)
+
+![Uso de IA](img/IA02.png)
+
+![Uso de IA](img/IA03.png)
+
 
 Este proyecto fue desarrollado con asistencia de Claude (Anthropic) como herramienta de apoyo para:
 - Estructurar el proyecto siguiendo buenas prácticas de arquitectura backend
