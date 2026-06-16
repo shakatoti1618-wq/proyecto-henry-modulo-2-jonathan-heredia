@@ -2,6 +2,11 @@
 
 API REST para gestionar autores y posts, construida con Node.js, Express y PostgreSQL.
 
+## 🚀 Demo en producción
+
+- **API:** https://proyecto-henry-modulo-2-jonathan-heredia-production.up.railway.app/authors
+- **Documentación Swagger:** https://proyecto-henry-modulo-2-jonathan-heredia-production.up.railway.app/api-docs
+
 ## Descripción
 
 MiniBlog es una API desarrollada para DevSpark que permite gestionar usuarios y publicaciones. Implementa operaciones CRUD completas para las entidades `authors` y `posts`.
@@ -15,32 +20,32 @@ MiniBlog es una API desarrollada para DevSpark que permite gestionar usuarios y 
 ## Instalación y ejecución local
 
 ### 1. Clonar el repositorio
-\```bash
+```bash
 git clone https://github.com/shakatoti1618-wq/proyecto-henry-modulo-2-jonathan-heredia.git
 cd proyecto-henry-modulo-2-jonathan-heredia
-\```
+```
 
 ### 2. Instalar dependencias
-\```bash
+```bash
 npm install
-\```
+```
 
 ### 3. Configurar variables de entorno
-\```bash
+```bash
 cp .env.example .env
-\```
+```
 Edita el archivo `.env` con tus datos de PostgreSQL.
 
 ### 4. Crear la base de datos
-\```bash
+```bash
 psql -U tu_usuario -d tu_base_de_datos -f sql/setup.sql
 psql -U tu_usuario -d tu_base_de_datos -f sql/seed.sql
-\```
+```
 
 ### 5. Ejecutar el servidor
-\```bash
+```bash
 npm run dev
-\```
+```
 El servidor estará disponible en `http://localhost:3000`
 
 ## Documentación OpenAPI
@@ -49,11 +54,15 @@ Con el servidor corriendo, abre en el navegador:
 
 `http://localhost:3000/api-docs`
 
+O en producción:
+
+`https://proyecto-henry-modulo-2-jonathan-heredia-production.up.railway.app/api-docs`
+
 ## Ejecutar tests
 
-\```bash
+```bash
 npm test
-\```
+```
 
 ## Endpoints disponibles
 
@@ -93,18 +102,17 @@ PORT=3000
 2. Crear nuevo proyecto → Deploy from GitHub
 3. Conectar este repositorio
 4. Agregar servicio PostgreSQL en Railway
-5. Configurar variables de entorno con los datos de Railway:
+5. Configurar variables de entorno:
    - `DB_HOST` → Internal host de PostgreSQL en Railway
    - `DB_PORT` → 5432
-   - `DB_NAME` → nombre de la base de datos
-   - `DB_USER` → usuario de la base de datos
-   - `DB_PASSWORD` → contraseña
-   - `PORT` → 3000
-6. Ejecutar los scripts SQL desde la consola de Railway:
-   \```bash
-   psql -U usuario -d base_de_datos -f sql/setup.sql
-   psql -U usuario -d base_de_datos -f sql/seed.sql
-   \```
+   - `DB_NAME` → railway
+   - `DB_USER` → postgres
+   - `DB_PASSWORD` → contraseña de Railway
+6. Ejecutar los scripts SQL:
+```bash
+psql -h HOST_PUBLICO -U postgres -p PUERTO -d railway -f sql/setup.sql
+psql -h HOST_PUBLICO -U postgres -p PUERTO -d railway -f sql/seed.sql
+```
 
 ## Uso de IA
 
@@ -116,4 +124,3 @@ Este proyecto fue desarrollado con asistencia de Claude (Anthropic) como herrami
 - Documentar la API con OpenAPI/Swagger
 
 Todos los conceptos fueron comprendidos y aplicados por el estudiante Jonathan Heredia siguiendo la guía del módulo.
-Guarda y dime cuando esté listo 💪
