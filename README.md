@@ -128,9 +128,32 @@ PORT=3000
 
 ![Uso de IA](img/IA01.png)
 
+**Prompt:** "tengo que entregar este trabajo, te doy toda la información, necesito hacer todo como lo indica la información, recuerda que necesito ir entendiendo los procesos paso a paso para aprender"
+
+**Resultado obtenido:** La IA analizó el proyecto completo, identificó los conocimientos previos del estudiante y estableció un plan de trabajo claro para construir la API paso a paso sin copiar código sin entenderlo.
+
 ![Uso de IA](img/IA02.png)
 
+**Prompt:** "explicame mejor el error para tenerlo en cuenta paso a paso que pasó"
+
+**Resultado obtenido:** La IA explicó por qué el test de email duplicado fallaba la segunda vez que se ejecutaba, debido a que PostgreSQL persiste los datos entre ejecuciones. Se solucionó usando `Date.now()` para generar emails únicos en cada test.
+
 ![Uso de IA](img/IA03.png)
+
+**Prompt:** "esta la viste creo que me faltan los controladores en mi estructura"
+
+**Resultado obtenido:** La IA analizó la guía completa y explicó que la arquitectura recomendada solo necesita dos capas (routes y services), confirmando que la estructura del proyecto estaba correctamente organizada.
+
+![Uso de IA](img/IA04.png)
+![Uso de IA](img/IA05.png)
+
+**Prompt:**comparti mi proyecto con uno de mis profesores y vio este error lo solucionamos.
+
+**Prompt:** "si instalamos el paquete de cors no se soluciona el problema"
+
+**Resultado obtenido:** La IA explicó la diferencia entre el error de URL en Swagger y el problema de CORS. Se instaló el paquete `cors` y se configuró en `app.js` para permitir peticiones desde otros dominios, además de actualizar la URL del servidor en `openapi.yaml` para que Swagger funcione correctamente en Railway.
+
+Todos los conceptos fueron comprendidos y aplicados por el estudiante Jonathan Heredia siguiendo la guía del módulo.
 
 
 Este proyecto fue desarrollado con asistencia de Claude (Anthropic) como herramienta de apoyo para:

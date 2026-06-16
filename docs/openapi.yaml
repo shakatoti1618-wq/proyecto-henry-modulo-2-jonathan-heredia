@@ -7,7 +7,8 @@ info:
 servers:
   - url: http://localhost:3000
     description: Servidor local
-
+  - url: https://proyecto-henry-modulo-2-jonathan-heredia-production.up.railway.app
+    description: Servidor en producción (Railway)
 paths:
   /authors:
     get:
