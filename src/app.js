@@ -10,20 +10,31 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../docs/openapi.yaml'));
 app.use(cors());
 app.use(express.json());
 
+// Ruta principal
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: 'MiniBlog API funcionando correctamente',
+        documentation: '/api-docs',
+        authors: '/authors',
+        posts: '/posts'
+    });
+});
 
 app.use('/api-docs', swaggerUi.serve, (req, res, next) => {
     const host = req.get('host');
     const protocol = host.includes('railway.app') ? 'https' : req.protocol;
+
     const dynamicDoc = {
-    ...swaggerDocument,
-    servers: [
-    {
-        url: `${protocol}://${host}`,
-        description: 'Servidor actual'
-    }
-    ]
-};
-swaggerUi.setup(dynamicDoc)(req, res, next);
+        ...swaggerDocument,
+        servers: [
+            {
+                url: `${protocol}://${host}`,
+                description: 'Servidor actual'
+            }
+        ]
+    };
+
+    swaggerUi.setup(dynamicDoc)(req, res, next);
 });
 
 const authorsRouter = require('./routes/authors.routes');
